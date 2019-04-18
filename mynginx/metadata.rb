@@ -1,0 +1,5 @@
+name 'mynginx'
+description 'A basic starter cookbook'
+version '2.0.0'
+maintainer 'Affan Naim.'
+maintainer_email 'you@example.com'
