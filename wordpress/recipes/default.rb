@@ -14,11 +14,11 @@ apt_package inst do
 end
 
 service "apache2" do
-action :start
+ action :start
 end
 
 execute 'mysqladmin' do
-   command "mysqladmin -u root password rootpassword"
+  command "mysqladmin -u root password rootpassword"
 end
 
 remote_file "mysqlcommand" do
@@ -27,7 +27,7 @@ remote_file "mysqlcommand" do
 end
 
 execute 'mysqlcommad' do
-   command "mysql -uroot -prootpassword < /tmp/mysqlcommands"
+  command "mysql -uroot -prootpassword < /tmp/mysqlcommands"
 end
 
 remote_file "wordpress" do
@@ -36,7 +36,7 @@ remote_file "wordpress" do
 end
 
 package "unzip" do
-action :install
+ action :install
 end
 
 execute 'unzip' do
@@ -48,13 +48,14 @@ remote_file "config-sample" do
  path "/var/www/html/wordpress/wp-config.php"
 end
 
-file '/var/www/html/wordpress' do
+directory '/var/www/html/wordpress' do
   mode '755'
-  #owner 'www-data:www-data'
+  owner 'www-data'
+  group 'www-data'
 end
 
 service "apache2" do
-action :restart
+ action :restart
 end
 
 # For more information, see the documentation: https://docs.chef.io/essentials_cookbook_recipes.html
